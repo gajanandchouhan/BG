@@ -1,0 +1,43 @@
+{
+  "project_info": {
+    "project_number": "891608929794",
+    "firebase_url": "https://bhagawad-gita-6ff06.firebaseio.com",
+    "project_id": "bhagawad-gita-6ff06",
+    "storage_bucket": "bhagawad-gita-6ff06.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891608929794:android:5697417213fca3a1",
+        "android_client_info": {
+          "package_name": "com.gc.bhagavadgita"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891608929794-tp34315o2epnnqrt2s87rh79ah3bc111.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrU8ZTJH53l_wfqOvMvHC81zGmy4xP6fA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      },
+      "admob_app_id": "ca-app-pub-3047625223985833~2374886632"
+    }
+  ],
+  "configuration_version": "1"
+}

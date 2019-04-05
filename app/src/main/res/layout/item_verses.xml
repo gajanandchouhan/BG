@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="verse"
+            type="com.gc.bhagavadgita.data.model.VersesListResponse" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10dp">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/quicksand_bold"
+            android:text="@{@string/sloke(verse.verse_number)}"
+            android:textSize="@dimen/_16sp" />
+
+        <TextView
+            android:id="@+id/text_verse_meaning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_5dp"
+            android:fontFamily="@font/quicksand_regular"
+            android:gravity="center"
+            android:text="@{verse.meaning}"
+            android:textSize="@dimen/_14sp" />
+
+        <Button
+            android:id="@+id/read_buton"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_button_height"
+            android:layout_below="@+id/text_verse_meaning"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_5dp"
+            android:background="@drawable/rounded_yellow"
+            android:text="@string/read_sloke"
+            android:textColor="@color/colorWhite" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/read_buton"
+            android:layout_marginTop="@dimen/_10dp"
+            android:background="@color/colorDark" />
+    </RelativeLayout>
+</layout>

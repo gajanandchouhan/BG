@@ -49,30 +49,5 @@ public abstract class BasePresenter<V> {
         return params;
     }
 
-    public void getAuthtoken() {
-        HashMap<String, String> params = new HashMap<>();
-        params.put("client_id", ApiClient.clientId);
-        params.put("client_secret", ApiClient.clientSecret);
-        params.put("grant_type", "client_credentials");
-        params.put("scope", "verse chapter");
-        Call<AccessTokenResponse> accessToken = apiInterface.getAccessToken(getRequestParams(params));
-        accessToken.enqueue(new Callback<AccessTokenResponse>() {
-            //            @Override
-            public void onResponse(Call<AccessTokenResponse> call, Response<AccessTokenResponse> response) {
-                if (response.body() != null) {
-                    PrefHelper.getInstance(context).setAccessToken(response.body().getAccess_token());
-                    onTokenRefreshed();
-                } else {
-                    Utils.showToast(context.getString(R.string.response_error), context);
-                }
-            }
 
-            @Override
-            public void onFailure(Call<AccessTokenResponse> call, Throwable t) {
-                Utils.showToast(context.getString(R.string.response_error), context);
-            }
-        });
-    }
-
-    protected abstract void onTokenRefreshed();
 }

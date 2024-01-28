@@ -1,11 +1,10 @@
 package com.gc.bhagavadgita.acivity;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.gc.bhagavadgita.R;
@@ -16,7 +15,6 @@ import com.gc.bhagavadgita.data.model.VersesListResponse;
 import com.gc.bhagavadgita.databinding.ActivityVersesBinding;
 import com.gc.bhagavadgita.interfaces.RecyclerItemClickListner;
 import com.gc.bhagavadgita.presenter.VersesPresenter;
-import com.google.android.gms.ads.AdRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +41,7 @@ public class VersesActivity extends BaseActivity<VersesPresenter> implements Rec
         adapter = new VersesListAdapter(this,list);
         binding.recyclerView.setAdapter(adapter);
         presenter.setView(this);
-        presenter.getVerses(String.valueOf(number));
+        presenter.getVerses(String.valueOf(number),"1" );
         binding.setChapterDetails(chapterListResponse);
     }
 
@@ -68,15 +66,9 @@ public class VersesActivity extends BaseActivity<VersesPresenter> implements Rec
         startActivity(intent);
     }
 
-    @Override
-    public void onTokenRefresh() {
-        presenter.getVerses(String.valueOf(number));
-    }
 
     @Override
-    public void setVerses(List<VersesListResponse> versesListResponseList) {
-        list.clear();
-        list.addAll(versesListResponseList);
-        adapter.notifyDataSetChanged();
+    public void setVerses(VersesListResponse versesListResponseList) {
+
     }
 }

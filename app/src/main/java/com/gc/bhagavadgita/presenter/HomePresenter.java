@@ -33,11 +33,6 @@ public class HomePresenter extends BasePresenter<HomeContract.HomeView> implemen
 
     }
 
-    @Override
-    protected void onTokenRefreshed() {
-        view.onTokenRefresh();
-    }
-
 
     @Override
     public void getChapter() {
@@ -47,9 +42,7 @@ public class HomePresenter extends BasePresenter<HomeContract.HomeView> implemen
             @Override
             public void onResponse(Call<List<ChapterListResponse>> call, Response<List<ChapterListResponse>> response) {
                 view.hidProgress();
-                if (response.code() == 401) {
-                    getAuthtoken();
-                } else if (response.body() != null) {
+               if (response.body() != null) {
                     view.setChapter(response.body());
                 } else {
                     Utils.showToast(context.getString(R.string.response_error), context);

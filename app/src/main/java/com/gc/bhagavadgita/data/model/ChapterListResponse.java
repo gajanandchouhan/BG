@@ -1,13 +1,16 @@
 package com.gc.bhagavadgita.data.model;
 
-import java.io.Serializable;
+import androidx.annotation.Keep;
 
+import java.io.Serializable;
+import java.util.HashMap;
+@Keep
 public class ChapterListResponse implements Serializable {
 
     private int chapter_number;
     private String chapter_summary;
     private String name;
-    private String name_meaning;
+    private HashMap<String, String> meaning;
     private String name_translation;
     private String verses_count;
 
@@ -35,12 +38,12 @@ public class ChapterListResponse implements Serializable {
         this.name = name;
     }
 
-    public String getName_meaning() {
-        return name_meaning;
+    public HashMap<String,String> getName_meaning() {
+        return meaning;
     }
 
-    public void setName_meaning(String name_meaning) {
-        this.name_meaning = name_meaning;
+    public void setName_meaning(HashMap name_meaning) {
+        this.meaning = name_meaning;
     }
 
     public String getName_translation() {

@@ -2,37 +2,41 @@ package com.gc.bhagavadgita.acivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
 import com.gc.bhagavadgita.R;
-import com.gc.bhagavadgita.contract.SplashContract;
-import com.gc.bhagavadgita.presenter.SplashPresenter;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-public class SplashActivity extends BaseActivity<SplashPresenter> implements SplashContract.SplashView{
+public class SplashActivity extends BaseActivity {
+    private Handler handler;
+    private Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            finish();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        presenter.getAuthToken();
-        presenter.setView(this);
+        handler = new Handler();
         AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-
+        handler.postDelayed(runnable, 3000);
     }
 
     @Override
-    public SplashPresenter initializePresenter() {
-        return new SplashPresenter(this);
+    protected void onDestroy() {
+        handler.removeCallbacks(runnable);
+        super.onDestroy();
     }
 
-
-
     @Override
-    public void onTokenRefresh() {
-        startActivity(new Intent(this,MainActivity.class));
-        finish();
+    public Object initializePresenter() {
+        return null;
     }
 }

@@ -8,7 +8,7 @@
             type="com.gc.bhagavadgita.data.model.ChapterListResponse" />
     </data>
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_5dp">
@@ -33,7 +33,7 @@
                 android:layout_below="@+id/text_title"
                 android:layout_marginTop="@dimen/_5dp"
                 android:fontFamily="@font/quicksand_regular"
-                android:text="@{chapter.name_meaning}"
+                android:text='@{chapter.name_meaning["hi"]}'
                 android:textSize="@dimen/_15sp" />
 
             <ImageView
@@ -44,5 +44,5 @@
                 android:layout_centerVertical="true"
                 android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
         </RelativeLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 </layout>

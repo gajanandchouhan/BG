@@ -1,24 +1,26 @@
 package com.gc.bhagavadgita.fragment;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.gc.bhagavadgita.R;
 import com.gc.bhagavadgita.acivity.VersesActivity;
+import com.gc.bhagavadgita.acivity.VersesDetailsActivity;
 import com.gc.bhagavadgita.adapter.ChapterListAdapter;
 import com.gc.bhagavadgita.contract.HomeContract;
 import com.gc.bhagavadgita.data.model.ChapterListResponse;
 import com.gc.bhagavadgita.databinding.FragmentHomeBinding;
 import com.gc.bhagavadgita.interfaces.RecyclerItemClickListner;
 import com.gc.bhagavadgita.presenter.HomePresenter;
-import com.google.android.gms.ads.AdRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +67,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements Recycle
 
     @Override
     public void onItemClick(int position) {
-        Intent intent = new Intent(getActivity(), VersesActivity.class);
+        Intent intent = new Intent(getActivity(), VersesDetailsActivity.class);
         intent.putExtra("chapter", list.get(position));
         startActivity(intent);
     }
@@ -79,8 +81,4 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements Recycle
 
     }
 
-    @Override
-    public void onTokenRefresh() {
-        presenter.getChapter();
-    }
 }

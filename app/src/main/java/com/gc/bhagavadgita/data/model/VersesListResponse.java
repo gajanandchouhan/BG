@@ -1,14 +1,21 @@
 package com.gc.bhagavadgita.data.model;
 
-import java.io.Serializable;
+import androidx.annotation.Keep;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+@Keep
 public class VersesListResponse implements Serializable{
+    @SerializedName("chapter")
     private String chapter_number;
     private String meaning;
+    @SerializedName("slok")
     private String text;
-    private String transliteration;
+    @SerializedName("rams")
+    private SlokDetail slokDetail;
+    @SerializedName("rams")
     private String verse_number;
-    private String word_meanings;
 
     public String getChapter_number() {
         return chapter_number;
@@ -34,13 +41,6 @@ public class VersesListResponse implements Serializable{
         this.text = text;
     }
 
-    public String getTransliteration() {
-        return transliteration;
-    }
-
-    public void setTransliteration(String transliteration) {
-        this.transliteration = transliteration;
-    }
 
     public String getVerse_number() {
         return verse_number;
@@ -50,11 +50,11 @@ public class VersesListResponse implements Serializable{
         this.verse_number = verse_number;
     }
 
-    public String getWord_meanings() {
-        return word_meanings;
+    public SlokDetail getSlokDetail() {
+        return slokDetail;
     }
 
-    public void setWord_meanings(String word_meanings) {
-        this.word_meanings = word_meanings;
+    public void setSlokDetail(SlokDetail slokDetail) {
+        this.slokDetail = slokDetail;
     }
 }

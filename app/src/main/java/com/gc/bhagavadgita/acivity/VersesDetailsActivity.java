@@ -1,36 +1,39 @@
 package com.gc.bhagavadgita.acivity;
 
-import android.databinding.DataBindingUtil;
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.gc.bhagavadgita.R;
 import com.gc.bhagavadgita.adapter.VerseDetailstAdapter;
+import com.gc.bhagavadgita.data.model.ChapterListResponse;
 import com.gc.bhagavadgita.data.model.VersesListResponse;
 import com.gc.bhagavadgita.databinding.ActivityVersesDetailsBinding;
 import com.gc.bhagavadgita.interfaces.RecyclerItemClickListner;
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class VersesDetailsActivity extends AppCompatActivity implements RecyclerItemClickListner {
     ActivityVersesDetailsBinding binding;
-    List<VersesListResponse> verse;
-    int position;
+    ChapterListResponse verse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_verses_details);
         setSupportActionBar(binding.toolbar);
-        position = getIntent().getIntExtra("position", 0);
-        verse = (ArrayList) getIntent().getSerializableExtra("verse");
+        verse = (ChapterListResponse) getIntent().getSerializableExtra("verse");
         setActionBarTitle();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         binding.pager.setAdapter(new VerseDetailstAdapter(this, verse));
@@ -42,7 +45,7 @@ public class VersesDetailsActivity extends AppCompatActivity implements Recycler
 
             @Override
             public void onPageSelected(int i) {
-                position = i;
+                position = i+1;
                 setActionBarTitle();
             }
 
@@ -61,7 +64,7 @@ public class VersesDetailsActivity extends AppCompatActivity implements Recycler
     }
 
     private void setActionBarTitle() {
-        getSupportActionBar().setTitle("अध्याय " + verse.get(position).getChapter_number() + ", श्लोक " + verse.get(position).getVerse_number());
+        getSupportActionBar().setTitle("अध्याय " + verse.getChapter_number() + ", श्लोक " + verse.get(position).getVerse_number());
     }
 
     @Override
@@ -78,18 +81,23 @@ public class VersesDetailsActivity extends AppCompatActivity implements Recycler
     }
 
     void setUpAdd() {
-        InterstitialAd mInterstitialAd = new InterstitialAd(this);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mInterstitialAd.setAdUnitId(getString(R.string.interstitial1));
-        mInterstitialAd.loadAd(adRequest);
-        mInterstitialAd.setAdListener(new AdListener() {
-            public void onAdLoaded() {
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                }
+        InterstitialAd.load(this, getString(R.string.interstitial1),adRequest, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                // The mInterstitialAd reference will be null until
+                // an ad is loaded.
+                Log.i("TAG", "onAdLoaded");
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                // Handle the error
+                Log.d("TAG", loadAdError.toString());
             }
         });
     }
+
 
     public void onNextClick(View view) {
         int currentItem = binding.pager.getCurrentItem();

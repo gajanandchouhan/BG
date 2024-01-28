@@ -17,20 +17,15 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiInterface {
-    String API_END = "api/v1/";
-    String AUTH_END = "auth/oauth/token";
-    String CHAPTERS = API_END + "chapters";
-    String VERSES = CHAPTERS + "/{chapter_num}/verses";
+    String CHAPTERS = "chapters";
+    String SLOK = "slok/{chapter_num}/{slok_num}";
 
 
-    @Multipart
-    @POST(AUTH_END)
-    Call<AccessTokenResponse> getAccessToken(@PartMap() Map<String, RequestBody> params);
 
     @GET(CHAPTERS)
     Call<List<ChapterListResponse>> getChapterList(@Query("access_token") String accessToken, @Query("language") String language);
 
-    @GET(VERSES)
-    Call<List<VersesListResponse>> getVersesList(@Path("chapter_num") String number, @Query("access_token") String accessToken, @Query("language") String language);
+    @GET(SLOK)
+    Call<VersesListResponse> getVersesList(@Path("chapter_num") String number, @Path("slok_num") String slokNum);
 
 }

@@ -49,7 +49,7 @@
                 android:layout_marginTop="@dimen/_30dp"
                 android:fontFamily="@font/quicksand_regular"
                 android:gravity="center"
-                android:text="@{details.word_meanings}"
+                android:text='@{details.slokDetail["ht"]}'
                 android:textSize="@dimen/_14sp" />
 
             <TextView
@@ -72,7 +72,7 @@
                 android:layout_marginTop="@dimen/_5dp"
                 android:fontFamily="@font/quicksand_regular"
                 android:gravity="center"
-                android:text="@{details.meaning}"
+                android:text='@{details.slokDetail["ht"]}'
                 android:textSize="@dimen/_14sp" />
         </LinearLayout>
 

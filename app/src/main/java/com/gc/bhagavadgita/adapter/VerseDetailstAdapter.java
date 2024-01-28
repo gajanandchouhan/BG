@@ -1,19 +1,16 @@
 package com.gc.bhagavadgita.adapter;
 
 import android.content.Context;
-import android.databinding.DataBindingUtil;
-import android.support.annotation.NonNull;
-import android.support.v4.view.PagerAdapter;
-import android.support.v7.widget.RecyclerView;
+import androidx.databinding.DataBindingUtil;
+import androidx.viewpager.widget.PagerAdapter;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.gc.bhagavadgita.R;
 import com.gc.bhagavadgita.data.model.VersesListResponse;
 import com.gc.bhagavadgita.databinding.ItemVerseDetailsBinding;
 import com.gc.bhagavadgita.databinding.ItemVersesBinding;
-import com.gc.bhagavadgita.interfaces.RecyclerItemClickListner;
 
 import java.util.List;
 

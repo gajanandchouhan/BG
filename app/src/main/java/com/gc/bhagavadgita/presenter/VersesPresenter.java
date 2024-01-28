@@ -3,15 +3,11 @@ package com.gc.bhagavadgita.presenter;
 import android.content.Context;
 
 import com.gc.bhagavadgita.R;
-import com.gc.bhagavadgita.contract.HomeContract;
 import com.gc.bhagavadgita.contract.VerseContract;
-import com.gc.bhagavadgita.data.local.PrefHelper;
-import com.gc.bhagavadgita.data.model.ChapterListResponse;
 import com.gc.bhagavadgita.data.model.VersesListResponse;
 import com.gc.bhagavadgita.utils.Utils;
 
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,21 +33,14 @@ public class VersesPresenter extends BasePresenter<VerseContract.View> implement
     }
 
     @Override
-    protected void onTokenRefreshed() {
-        view.onTokenRefresh();
-    }
-
-    @Override
-    public void getVerses(String number) {
+    public void getVerses(String number, String slokNum) {
         view.showProgress();
-        Call<List<VersesListResponse>> chpatResponse = apiInterface.getVersesList(number, PrefHelper.getInstance(context).getAccessToken(), "hi");
-        chpatResponse.enqueue(new Callback<List<VersesListResponse>>() {
+        Call<VersesListResponse> chpatResponse = apiInterface.getVersesList(number, slokNum);
+        chpatResponse.enqueue(new Callback<VersesListResponse>() {
             @Override
-            public void onResponse(Call<List<VersesListResponse>> call, Response<List<VersesListResponse>> response) {
+            public void onResponse(Call<VersesListResponse> call, Response<VersesListResponse> response) {
                 view.hidProgress();
-                if (response.code() == 401) {
-                    getAuthtoken();
-                } else if (response.body() != null) {
+                if (response.body() != null) {
                     view.setVerses(response.body());
                 } else {
                     Utils.showToast(context.getString(R.string.response_error), context);
@@ -60,7 +49,7 @@ public class VersesPresenter extends BasePresenter<VerseContract.View> implement
             }
 
             @Override
-            public void onFailure(Call<List<VersesListResponse>> call, Throwable t) {
+            public void onFailure(Call<VersesListResponse> call, Throwable t) {
                 view.hidProgress();
                 Utils.showToast(context.getString(R.string.response_error), context);
             }

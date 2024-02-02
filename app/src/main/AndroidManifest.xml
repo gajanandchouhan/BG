@@ -32,10 +32,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".acivity.VersesActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".acivity.VersesDetailsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

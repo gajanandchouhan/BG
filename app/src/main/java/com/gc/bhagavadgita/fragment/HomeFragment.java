@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gc.bhagavadgita.R;
-import com.gc.bhagavadgita.acivity.VersesActivity;
 import com.gc.bhagavadgita.acivity.VersesDetailsActivity;
 import com.gc.bhagavadgita.adapter.ChapterListAdapter;
 import com.gc.bhagavadgita.contract.HomeContract;

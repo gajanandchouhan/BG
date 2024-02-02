@@ -1,15 +1,26 @@
 package com.gc.bhagavadgita.data.model;
 
-import java.util.HashMap;
+import com.google.gson.annotations.SerializedName;
 
 public class SlokDetail {
-    HashMap<String, String> slokDetails;
+    @SerializedName("ht")
+    String meaning;
+    @SerializedName("hc")
+    String transalation;
 
-    public HashMap<String, String> getSlokDetails() {
-        return slokDetails;
+    public String getMeaning() {
+        return meaning;
     }
 
-    public void setSlokDetails(HashMap<String, String> slokDetails) {
-        this.slokDetails = slokDetails;
+    public void setMeaning(String meaning) {
+        this.meaning = meaning;
+    }
+
+    public String getTransalation() {
+        return transalation;
+    }
+
+    public void setTransalation(String transalation) {
+        this.transalation = transalation;
     }
 }

@@ -14,7 +14,7 @@ public class VersesListResponse implements Serializable{
     private String text;
     @SerializedName("rams")
     private SlokDetail slokDetail;
-    @SerializedName("rams")
+    @SerializedName("verse")
     private String verse_number;
 
     public String getChapter_number() {

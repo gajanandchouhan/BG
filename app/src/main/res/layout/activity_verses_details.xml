@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+        <variable
+            name="details"
+            type="com.gc.bhagavadgita.data.model.VersesListResponse" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -20,22 +26,89 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/pager"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:fillViewport="true">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10dp">
+
+                    <TextView
+                        android:id="@+id/text_verse"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_30dp"
+                        android:fontFamily="@font/quicksand_bold"
+                        android:gravity="center"
+                        android:text="@{details.text}"
+                        android:textSize="@dimen/_16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_30dp"
+                        android:fontFamily="@font/quicksand_bold"
+                        android:gravity="center"
+                        android:text="@string/verse_mean"
+                        android:textSize="@dimen/_16sp" />
+
+
+                    <TextView
+                        android:id="@+id/text_verse_meaning"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_30dp"
+                        android:fontFamily="@font/quicksand_regular"
+                        android:gravity="center"
+                        android:text='@{details.slokDetail.meaning}'
+                        android:textSize="@dimen/_14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_30dp"
+                        android:fontFamily="@font/quicksand_bold"
+                        android:gravity="center"
+                        android:text="@string/translation"
+                        android:textSize="@dimen/_16sp" />
+
+
+                    <TextView
+                        android:id="@+id/text_verse_trans"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/text_title"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_5dp"
+                        android:fontFamily="@font/quicksand_regular"
+                        android:gravity="center"
+                        android:text='@{details.slokDetail.transalation}'
+                        android:textSize="@dimen/_14sp" />
+                </LinearLayout>
+
+
+            </ScrollView>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:padding="@dimen/_10dp"
                 android:layout_height="wrap_content">
+
                 <ImageView
                     android:onClick="onNextClick"
                     android:layout_width="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:src="@drawable/ic_skip_next_black_24dp"
-                android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content" />
 
                 <ImageView
                     android:onClick="onPreviousClick"
@@ -44,6 +117,17 @@
                     android:src="@drawable/ic_skip_next_black_24dp"
                     android:layout_height="wrap_content" />
             </RelativeLayout>
+
+            <ProgressBar
+                android:id="@+id/pBar"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:indeterminateTintMode="src_atop"
+                android:indeterminateTint="@color/colorPrimary"
+                android:layout_centerInParent="true"
+                android:layout_height="wrap_content" />
+
         </RelativeLayout>
 
 
